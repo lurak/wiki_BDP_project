@@ -17,7 +17,7 @@ class Page(models.Model):
         domains = list()
         data = Page.objects.all()
         for row in data:
-            domains.append(row.domain_name)
+             domains.append(row.domain_name)
         return list(set(domains))
 
     @classmethod
@@ -31,7 +31,7 @@ class Page(models.Model):
     @classmethod
     def get_number_of_articles(cls, domain_name):
         data = Page.objects.filter(domain_name=domain_name)
-        return data.count
+        return data.count()
 
     @classmethod
     def get_page_by_id(cls, page_id):
