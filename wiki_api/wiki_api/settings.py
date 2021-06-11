@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'pages',
+    'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -76,10 +78,10 @@ WSGI_APPLICATION = 'wiki_api.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'wiki',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': '127.0.0.1',
+        'NAME': 'pages',
+        'USER': 'pivotal',
+        'PASSWORD': 'ZSf5rUAs0EEwr',
+        'HOST': '34.94.182.239',
         'PORT': '5432',
     }
 }

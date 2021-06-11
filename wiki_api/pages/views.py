@@ -1,3 +1,11 @@
-from django.shortcuts import render
+from rest_framework.views import APIView
+from rest_framework.views import Response
+from .models import Page
+from .serialize import PageDetailSerializer
 
-# Create your views here.
+
+class WikiPage(APIView):
+    @staticmethod
+    def get(request, pk):
+        queryset = Page.get_page_by_id(pk)
+        return Response(PageDetailSerializer(queryset, many=True).data)
