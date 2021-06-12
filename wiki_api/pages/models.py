@@ -17,7 +17,7 @@ class Page(models.Model):
         domains = list()
         data = Page.objects.all()
         for row in data:
-             domains.append(row.domain_name)
+            domains.append(row.domain_name)
         return list(set(domains))
 
     @classmethod
@@ -37,3 +37,14 @@ class Page(models.Model):
     def get_page_by_id(cls, page_id):
         data = Page.objects.filter(page_id=page_id)
         return data
+
+    @classmethod
+    def get_users_by_time(cls, date_start, date_end):
+        data = Page.objects.filter(created_at__gt=date_start, created_at__lt=date_end)
+        res = list()
+        user_ids = set()
+        for user in data:
+            if user.user_id not in user_ids:
+                res.append({"user": user.user_id, "number": len(data.filter(user_id=user.user_id))})
+            user_ids.add(user.user_id)
+        return res

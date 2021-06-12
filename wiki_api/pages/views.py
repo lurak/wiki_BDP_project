@@ -30,3 +30,11 @@ class WikiPagesByDomain(APIView):
     def get(request, pk):
         queryset = {'number_of_pages': Page.get_number_of_articles(pk)}
         return Response(queryset)
+
+
+class WikiUsersByTime(APIView):
+    @staticmethod
+    def get(request, date_start, date_end):
+        print(date_start, date_end)
+        queryset = {"users": Page.get_users_by_time(date_start, date_end)}
+        return Response(queryset)
