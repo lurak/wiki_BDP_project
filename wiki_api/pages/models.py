@@ -15,10 +15,10 @@ class Page(models.Model):
     @classmethod
     def get_all_domains(cls):
         domains = list()
-        data = Page.objects.all()
+        data = Page.objects.all().distinct('domain_name')
         for row in data:
             domains.append(row.domain_name)
-        return list(set(domains))
+        return domains
 
     @classmethod
     def get_pages_by_user(cls, user_id):
