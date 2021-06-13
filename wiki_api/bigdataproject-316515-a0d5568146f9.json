@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "bigdataproject-316515",
+  "private_key_id": "a0d5568146f98a4172a1c364f2b77774d3f4ecbd",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCc+ntTb7of29/w\nFFToSfBBpewq7NRnMbOU/Vq02TLautHb5B3uNf0ovDFWnGB2baJZ7hvobw0PNvEy\n7L49vgwk9z9922dGAP1Q+Ux3mNioKrjb0cBAEcuZDFxNLcpyHBEp7+RXbWzn69Oe\nfsMFva0kQhP3KFZlfotzsm+HCxhXCS47Uv8KCFuqc5V0pK4QU2cGCeW4A+/pq7U8\naarj/63DE4Lz+J852B+o2c9iENXa1p8Y6nqUuE8CM0gbVoOha4ymysZRWzwZO2UK\nScPTebW3mW67kOgKt5GuG9R05KcWt62qTwztOxl+0TufJ1gfr2ioYXly9v+z3B5h\nsD6B2l2BAgMBAAECggEADnDBWwvOWqNqnoZ0SBkTI6rchpdaM7MAAt7qkvPfCH2C\nlCCQO0tWokJrpHzGp+ZOdsjfYtqiYCms9wMNvhbHPbhL7Cs8fRVWuDXyuZbDKXci\nocASGCK68LWRIR1q/+PClXHGtt8vU0dfpHcjQBoyfQEiHoyko/oH4IkD1u+nmcvu\nxOzw2loGk3ffEnO57ZBEY+Q5dzV7wdHGZO+dB5RoDY0usbfNoREmlnmsaoKxHO6S\nYhK8tns+K2sB0TaxyAp1Ij1VTqgmu7XndFw4jvPgQIVSexUF4DtBLw764Kfjpk4r\nc5XnuohsVnlZVxdNfDqvOIRq6aTxmEva5Vk1Pwea0QKBgQDLEY1mAptTSfyhCX/2\n5xUcvkvQjR0KRy6WT994BG1SIw6LolEbdNKPBziLIPS3T6XKcZOkndKhtYf66TvE\nJoj5qJKZSoBbbxvY5ja+6jcMRX6wu7C50Qwn0RN7hrlLlYz8sNSGcfjyv3U15RDS\nyJGR409NJj+xv3/EmMYaL8+iGQKBgQDF5WhmhGkuqFtqaPcSl+Itx9wWyLU83MzL\nPcWIKb88YnLJZjTnBbEhhWQ1iyvz7ThFBAgAWBN6S1scRMxkmUoHQnAegTmeHrXx\n72mYL/mbG7BO4JytLe7/T1jhrWQbbhDlBghWzEWQhF7CLl4MABd2AkPjyoesABUs\nmx/Ps9STqQKBgEH6IPPM0wR7nG4B9SaWK+Db3ywSPSYyvGsv5k5LOe2e4EHz6eA+\n046O7QsfGQNaCGa/AhZRBLdvkI+wKa/wST68S20srImIjwaovY7H8Dy3c5MeWCv3\nRLjHEEppGlj5bQZIubQ44YaVOBLbqtyhN9KrhP9u9vDcZDnO3UZy1EY5AoGAXojv\nbYG1aVd9jACmfphVsL73sV6hzXhA0JoqoZgnxaXV5cXQYcgDTNsW+skH7xeUOMvr\nMpbgfxw+YuuupCPiDEO9oaTjrFhJXFCdJdlNKL56Y8PCtKvrrsTt1ajp2Hykz3Mp\nSqV8WcQSLDrQLHViv7nnSor2csD7XHqiIKtsUjkCgYEAoxPmBVhr1DzhNPSh31JM\nDMZRmHN+g+IcnNEIDkF/0GsJVZja2QT9nyj+gBvdhqSq1Rmtb+oAQbfxHlbzhUKt\nO8TcYcXCgGp4q8fFrAHBa4WWX0y9UX3ttwtdZR4EnebjawyWLbk4jgrqM1IrDHa7\nvIsRc1A5Kkr0HemxtqiBK7U=\n-----END PRIVATE KEY-----\n",
+  "client_email": "account-name@bigdataproject-316515.iam.gserviceaccount.com",
+  "client_id": "109224039625396571304",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/account-name%40bigdataproject-316515.iam.gserviceaccount.com"
+}
