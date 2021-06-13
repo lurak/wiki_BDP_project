@@ -117,7 +117,7 @@ $ python data_reader.py <host:port>
 
 ```
 
-* batch_processing.py - Компонента для формування звітів, який використовує spark batch processing
+* batch_processing.py - Компонента для формування звітів, який використовує spark batch processing, Вимагає версію спарку Spark 3.1
 --------------------------
 
 ```
@@ -128,7 +128,8 @@ $ spark-submit  --packages org.postgresql:postgresql:42.2.10 batch_processing.py
 <repots-folder> - директорія, куди записувати звіти 
 
 ```
-* spark_processing.py - Компонента, яка зчитує дані з кафки, обробляє їх та пушить в базу даних за допомогою спарк срімінга
+* spark_processing.py - Компонента, яка зчитує дані з кафки, обробляє їх та пушить в базу даних за допомогою спарк срімінга, вимагає версію спарку Spark 2.4.8 та 
+пайтону Python3.7
 ```
 spark-submit --packages org.apache.spark:spark-streaming-kafka-0-8_2.11:2.4.8 spark_processing.py <host:port>
 
