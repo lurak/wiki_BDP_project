@@ -54,16 +54,19 @@ if __name__ == "__main__":
         .builder \
         .appName("BigDataProg") \
         .getOrCreate()
-    df = spark.read \
+    df_options = spark.read \
         .format("jdbc") \
         .option("url", f'jdbc:postgresql://{properties["host"]}:5432/{properties["db"]}') \
-        .option("dbtable", 'pages_page') \
-        .option("user", properties["user"]) \
         .option("driver", properties["driver"]) \
         .option("password", properties["password"]) \
-        .load()
+        .option("user", properties["user"])
+    df_user = \
+        df_options.option("dbtable", 'pages_user').load()
 
+    df_pages = \
+        df_options.option("dbtable", 'pages_page').load()
 
+    df = df_user.join(df_pages, on="user_id")
     all_df = df.rdd.filter(lambda x: lower_bound <= x["created_at"] <= upper_bound)
 
     task1 = all_df.map(lambda x: ((x["created_at"].hour, x["domain_name"]),
@@ -103,9 +106,9 @@ if __name__ == "__main__":
     })).reduceByKey(reduce_by_key_three).map(lambda x: x[1]).sortBy(lambda x: -x["number_of_pages"]).take(20)
 
     results = spark.read.json(sc.parallelize([json.dumps(task1.collect())]))
-    results.coalesce(1).write.format('json').mode("overwrite").save(sys.argv[1] + "/task1")
+    results.coalesce(1).write.format('json').mode("overwrite").save(sys.argv[2] + "/task1")
     results = spark.read.json(sc.parallelize([json.dumps(task2)]))
-    results.coalesce(1).write.format('json').mode("overwrite").save(sys.argv[1] + "/task2")
+    results.coalesce(1).write.format('json').mode("overwrite").save(sys.argv[2] + "/task2")
     results = spark.read.json(sc.parallelize([json.dumps(task3)]))
-    results.coalesce(1).write.format('json').mode("overwrite").save(sys.argv[1] + "/task3")
+    results.coalesce(1).write.format('json').mode("overwrite").save(sys.argv[2] + "/task3")
 

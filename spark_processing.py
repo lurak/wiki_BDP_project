@@ -20,16 +20,28 @@ def add_to_db(message: pyspark.rdd.RDD, hostname="34.134.215.151",
 
     for mess in new_mess:
         try:
-            data = (mess["data"]["page_id"], mess["data"]["page_title"],
+            data1 = (mess["data"]["page_id"], mess["data"]["page_title"],
              datetime.fromtimestamp(mess["id"][0]["timestamp"] / 1000),
-                    mess["data"]["performer"]["user_id"],
-             mess["data"]["meta"]["domain"], mess["data"]["performer"]["user_text"],
-             mess["data"]["performer"]["user_is_bot"])
+             mess["data"]["performer"]["user_id"],
+             mess["data"]["meta"]["domain"])
+            data2 = (
+            mess["data"]["performer"]["user_id"],
+            mess["data"]["performer"]["user_text"],
+            mess["data"]["performer"]["user_is_bot"])
 
-            cursor.execute("insert into Pages_Page (page_id, page_name, created_at, user_id, domain_name, "
-                           "user_name, user_is_bot) "
-                           "values (%s, %s, %s, %s, %s, %s, %s) ",
-                           data)
+
+            cursor.execute(
+                """
+                insert into Pages_User (user_id, user_name, user_is_bot)
+                           values (%s, %s, %s)
+                           ON CONFLICT (user_id) DO NOTHING
+                """,
+
+                data2
+              )
+            cursor.execute("insert into Pages_Page (page_id, page_name, created_at, user_id, domain_name)"
+                           "values (%s, %s, %s, %s, %s)",
+                           data1)
 
             conn.commit()
         except KeyError as e:
