@@ -1,5 +1,13 @@
 # Big Data Project(Topic3 - Wiki)
 
+# Архітектура проєкту
+
+![Diagram](./documentation/pictures/Diagram.png)
+
+1) За допомогою Kafka Producer ми зчитуємо дані з Wiki
+2) Kafka Producer пише ці дані в Kafka
+3) 
+
 # Структура бази даних
 
 ![Diagram](./documentation/pictures/DB_schema.png)
