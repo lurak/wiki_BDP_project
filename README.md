@@ -21,6 +21,7 @@ ad-hoc queries і віддає їх користувачу
 ![Diagram](./documentation/diagrams/DB_schema.png)
 
 # REST API
+## Ad-hoc Queries
 ### 1 Query
 ![ad_hoc_1](./documentation/rest_api/ad_hoc_1.png)
 Перша ad-hoc query, яка повертає список всіх доменів,
@@ -72,6 +73,27 @@ URL:
 Де `<str:date_start>` - це початок часового проміжку
    `<str:date_end>` - це кінець часового проміжку 
 
+
+## Reports
+### 1 Report
+![report_1](./documentation/rest_api/report_1.png)
+URL:
+```
+ /reports/by_hours/
+```
+### 2 Report
+![report_2](./documentation/rest_api/report_2.png)
+URL:
+```
+ /reports/bots_six_hours/
+```
+### 3 Report
+![report_3](./documentation/rest_api/report_3.png)
+URL:
+```
+ /reports/top_twenty/
+```
+
 # Файл змінних середовища
 Для більшого захисту паролю і інші даних про базу даних,
 яка розгорнута на клауді були винесені в ``.env`` файл.
@@ -113,6 +135,3 @@ spark-submit --packages org.apache.spark:spark-streaming-kafka-0-8_2.11:2.4.8 sp
 <host:port> - хост порт кафки
 ```
 * в директорії wiki_api знаходиться django аплікація
-
-
-
