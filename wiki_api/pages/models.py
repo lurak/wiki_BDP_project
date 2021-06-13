@@ -10,7 +10,6 @@ class Page(models.Model):
     page_name = models.TextField('page_name')
     created_at = models.DateTimeField('created_at')
     user_id = models.TextField('user_id')
-    #user_name = models.TextField("user_name")
     domain_name = models.TextField('domain_name')
 
     def __str__(self):
@@ -76,13 +75,16 @@ class Page(models.Model):
         for user in data:
             if user.user_id not in user_ids:
                 res.append({"user": user.user_id,
-                            "name": User.get_by_id(user.user_id).user_name,
+                            "name": User.get_by_id(user.user_id)[0].user_name,
                             "number": len(data.filter(user_id=user.user_id))})
             user_ids.add(user.user_id)
         return res
 
 
 class User(models.Model):
+    """
+    Class to work with user table in DB
+    """
 
     user_id = models.TextField('user_id', unique=True)
     user_name = models.TextField('user_name')
@@ -90,5 +92,10 @@ class User(models.Model):
 
     @classmethod
     def get_by_id(cls, user_id):
+        """
+        Get data about user by id
+        :param user_id: user id
+        :return: info about user
+        """
         data = User.objects.filter(user_id=user_id)
         return data
