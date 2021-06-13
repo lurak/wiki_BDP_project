@@ -10,7 +10,7 @@ class Page(models.Model):
     domain_name = models.TextField('domain_name')
 
     def __str__(self):
-        return str(self.page_name)
+        return self.page_name
 
     @classmethod
     def get_all_domains(cls):
@@ -45,6 +45,23 @@ class Page(models.Model):
         user_ids = set()
         for user in data:
             if user.user_id not in user_ids:
-                res.append({"user": user.user_id, "number": len(data.filter(user_id=user.user_id))})
+                res.append({"user_id": user.user_id,
+                            "user_name": User.get_by_id(user.user_id).user_name,
+                            "number": len(data.filter(user_id=user.user_id))})
             user_ids.add(user.user_id)
         return res
+
+
+class User(models.Model):
+
+    user_id = models.TextField('user_id', unique=True)
+    user_name = models.TextField('user_name', unique=True)
+    user_is_bot = models.BooleanField('user_is_bot')
+
+    def __str__(self):
+        return self.user_name
+
+    @classmethod
+    def get_by_id(cls, user_id):
+        data = User.objects.filter(user_id=user_id)
+        return data
