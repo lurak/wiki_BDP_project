@@ -85,7 +85,7 @@ class Page(models.Model):
 class User(models.Model):
 
     user_id = models.TextField('user_id', unique=True)
-    user_name = models.TextField('user_name', unique=True)
+    user_name = models.TextField('user_name')
     user_is_bot = models.BooleanField('user_id_bot')
 
     @classmethod
