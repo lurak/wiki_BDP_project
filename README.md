@@ -84,3 +84,35 @@ URL:
    export DB_PASSWORD = ''
    export DB_PORT = ''
 ```
+
+# Компоненти проекти
+* data_reader.py - Продюсер, який зчитує дані з сайту та передає в кафку
+--------------------------
+
+```
+$ python data_reader.py <host:port>
+
+
+```
+
+* batch_processing.py - Компонента для формування звітів, який використовує spark batch processing
+--------------------------
+
+```
+$ spark-submit  --packages org.postgresql:postgresql:42.2.10 batch_processing.py <date> <repots-folder>
+
+
+<date> - дата, коли формувати звіт, у наступному форматі 2021-06-13/23:32:59
+<repots-folder> - директорія, куди записувати звіти 
+
+```
+* spark_processing.py - Компонента, яка зчитує дані з кафки, обробляє їх та пушить в базу даних за допомогою спарк срімінга
+```
+spark-submit --packages org.apache.spark:spark-streaming-kafka-0-8_2.11:2.4.8 spark_processing.py <host:port>
+
+<host:port> - хост порт кафки
+```
+* в директорії wiki_api знаходиться django аплікація
+
+
+
