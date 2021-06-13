@@ -4,6 +4,7 @@ from pyspark.streaming.kafka import KafkaUtils
 from pyspark import SparkContext
 from datetime import datetime
 import json
+import sys
 import psycopg2
 
 
@@ -20,8 +21,15 @@ def add_to_db(message: pyspark.rdd.RDD, hostname="34.134.215.151",
 
     for mess in new_mess:
         try:
+            k = None
+            for i in range(len(mess["id"])):
+                if "timestamp" in mess["id"][i]:
+                    k = i
+                    break
+            if k is None:
+                continue
             data1 = (mess["data"]["page_id"], mess["data"]["page_title"],
-             datetime.fromtimestamp(mess["id"][0]["timestamp"] / 1000),
+             datetime.fromtimestamp(mess["id"][k]["timestamp"] / 1000),
              mess["data"]["performer"]["user_id"],
              mess["data"]["meta"]["domain"])
             data2 = (
@@ -49,7 +57,6 @@ def add_to_db(message: pyspark.rdd.RDD, hostname="34.134.215.151",
             print(mess)
 
     conn.close()
-    # new_message = message.take(1000000)
 
 
 def reduce_statistics(x, y):
@@ -63,32 +70,13 @@ def reduce_by_key(x, y):
     return x
 
 
-def save_to_file(x):
-    l = x.take(1)[0]
-    print(l)
-
-
-def k(x):
-    # print(x)
-    return json.loads(x[1])
-
-
-
-
 if __name__ == "__main__":
     sc = SparkContext("local[*]", "Wiki")
     sc.setLogLevel("ERROR")
 
-    ssc = StreamingContext(sc, 5)
-    kvs = KafkaUtils.createStream(ssc, "localhost:2181", "1", {"topic-1": 1})  # localhost:2181
+    ssc = StreamingContext(sc, 15)
+    kvs = KafkaUtils.createStream(ssc, sys.argv[1], "1", {"topic-1": 1})  # localhost:2181
 
-    j = kvs.map(lambda x: k(x)).foreachRDD(lambda x: add_to_db(x))
-    # to_report = j.map(lambda x: (x["meta"]["domain"], {"count": 1,
-    #                                                    "time": x["rev_timestamp"]}))\
-    #     .window(5, 5)\
-    #     .reduceByKey(reduce_by_key)\
-    #     .map(lambda x: {"time": [x[1]["time"]], "statistics": [{x[0]: x[1]["count"]}]})\
-    #     .reduce(reduce_statistics).pprint(10)
-    # to_report.foreachRDD()
+    j = kvs.map(lambda x: json.loads(x[1])).foreachRDD(lambda x: add_to_db(x))
     ssc.start()
     ssc.awaitTermination()
