@@ -144,3 +144,13 @@ spark-submit --packages org.apache.spark:spark-streaming-kafka-0-8_2.11:2.4.8 sp
 <host:port> - хост порт кафки
 ```
 * в директорії wiki_api знаходиться django аплікація
+
+# Результати precomputed reports
+
+Результати виконання батч процесінгу знаходиться на гугл бакеті:
+
+task 1 https://storage.googleapis.com/bigdata-project-2021/task1/part-00000-34cd0cdb-04b4-48da-bb37-88f51ad9d6ba-c000.json
+
+task 2 https://storage.googleapis.com/bigdata-project-2021/task2/part-00000-b0dddd6a-e9f9-4442-88f5-c776ba74cf3c-c000.json
+
+task 3 https://storage.googleapis.com/bigdata-project-2021/task3/task3/part-00000-84afc8e7-bb95-45f8-a0f2-8c5fddf2ffb9-c000.json
